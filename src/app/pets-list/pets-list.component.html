@@ -1,0 +1,52 @@
+<div class="row justify-content-center" style="padding-left: 10px;">
+    <div class="list-group col-10">
+        <div class="row">
+            <input type="text" class="form-control decalTop decalBottom" [(ngModel)]="petToFind" (input)="findPet(petToFind)" placeholder="Search...">
+        </div>
+        <div class="row" *ngFor="let pet of petsToDisplay; let i = index" style="margin-bottom: 5px;" (mouseover)="actifPet = i">
+            <div class="list-group-item col-11">
+                <h4 class="row">{{pet.breed}}</h4>
+                <p class="row">{{pet.description}}</p>
+                <div class="row">
+                    <p class="col-auto" style="padding-left: 0px; margin-right: 10px;">Quantity : {{pet.quantity}}</p>
+                    <div class="row" *ngIf="i === actifPet">
+                        <button type="button" class="btn btn-primary btn-sm col-auto" (click)="addQuantity(i)">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                        <input type="number"  class="form-control col-5" min="1" value="1" [(ngModel)]="qty">
+                        <button type="button" *ngIf="checkValidRemoveQty(i)" class="btn btn-primary btn-sm col-auto" (click)="removeQuantity(i)">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </div>
+                </div>
+                <p *ngIf="confirmAddQtyMessage[i]" class="row alert alert-success decalTop">The quantity has been successfully added</p>
+                <p *ngIf="confirmRemoveQtyMessage[i]" class="row alert alert-success decalTop">The quantity has been successfully deleted</p>
+                <div *ngIf="confirmDeletePetMessage[i]" class="row alert alert-danger justify-content-between decalTop" style="padding-bottom:0px">
+                    <p>Are you sure you want to delete this pet ?</p>
+                    <div>
+                        <button type="button" class="btn btn-outline-dark btn-sm col-auto" style="margin-right: 10px;" (click)="confirmDeletePetMessage[i] = false">
+                            No
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm col-auto" style="margin-left: 10px;" (click)="deletePet(i)">
+                            Yes
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item col-1">
+                <div class="row justify-content-center" *ngIf="i === actifPet">
+                    <button type="button" class="btn btn-primary btn-sm col-auto" style="margin-right: 5px;" (click)="editPet(i)">
+                        <span class="fa fa-pencil"></span>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm col-auto" (click)="confirmDeletePetMessage[i] = true">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="petsToDisplay.length == 0">
+            <p class="alert alert-primary col-12">No pets are registered...</p>
+        </div>
+    </div>
+</div>
+<hr>

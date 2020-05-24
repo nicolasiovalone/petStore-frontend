@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-6 mx-auto decalTop">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" 
+                [routerLink]="['/']" 
+                routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact: true}"><span class="fa fa-paw"> Home</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" 
+                [routerLink]="['/pets']" 
+                routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact: true}">Pets inventory</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" 
+                [routerLink]="['/addPet']" 
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">Add a new pet</a>
+            </li>
+        </ul>
+    </div>
+</div>

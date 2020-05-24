@@ -1,0 +1,23 @@
+<h1 class="text-center decalTop">Edit pet !</h1>
+
+<div class="container" *ngIf="isExist">
+    <form [formGroup]='editPetForm' (ngSubmit)="submit()" class="col-6 mx-auto">
+        <div class="form-group">
+            <label>Breed :</label>
+            <input class="form-control" type="text" value="{{breed}}" disabled="true"/>
+        </div>
+        <div class="form-group">
+            <label>Description :</label>
+            <textarea formControlName="description" class="form-control" type="text"></textarea>
+        </div>
+        <div class="btn-toolbar justify-content-between">
+            <button class="btn btn-outline-dark col-2" (click)="backHome()">Back</button>
+            <input type="submit" class="btn btn-success col-2" value="Save"/>
+        </div>
+    </form>
+    <p *ngIf="confirmUpdateDescriptionMessage" class="row alert alert-success col-6 mx-auto decalTop">The description has been successfully updated</p>
+</div>
+
+<div class="container" *ngIf="!isExist">
+    <p class="alert alert-danger">This pet does not exist...</p>
+</div>
